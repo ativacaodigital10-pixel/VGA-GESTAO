@@ -8,7 +8,7 @@ import {
   gerarHash, conferirSenha, criarSessao, encerrarSessao, definirCookie, limparCookie,
   exigirLogin, criarLimitador, lerCookie,
 } from "./src/auth.js";
-import { gerarLegendas, iaDisponivel, OBJETIVOS } from "./src/legendas.js";
+import { gerarLegendas, iaDisponivel, OBJETIVOS, MAX_FOTOS_IA } from "./src/legendas.js";
 
 const aqui = path.dirname(fileURLToPath(import.meta.url));
 
@@ -252,13 +252,13 @@ export function criarApp({ pastaDados = path.join(aqui, "data"), gerador = gerar
   });
 
   // ---------- Legendas ----------
-  app.post("/api/legendas", login, express.json({ limit: "8mb" }), async (req, res) => {
+  app.post("/api/legendas", login, express.json({ limit: "12mb" }), async (req, res) => {
     if (!limiteLegendas(req.usuario.id)) {
       return res.status(429).json({ erro: "Limite de gerações por hora atingido. Tente mais tarde." });
     }
     const b = req.body || {};
     const imagens = Array.isArray(b.imagens)
-      ? b.imagens.filter((s) => typeof s === "string" && /^[A-Za-z0-9+/=]+$/.test(s) && s.length < 2_000_000).slice(0, 4)
+      ? b.imagens.filter((s) => typeof s === "string" && /^[A-Za-z0-9+/=]+$/.test(s) && s.length < 2_000_000).slice(0, MAX_FOTOS_IA)
       : [];
     const negocio = db.prepare("SELECT * FROM negocios WHERE usuario_id = ?").get(req.usuario.id) || {};
     try {

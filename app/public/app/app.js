@@ -280,6 +280,7 @@ function novoRascunho() {
 let rascunho = novoRascunho();
 
 const PASSOS = ["Fotos", "Tratamento", "Legenda", "Agendar"];
+const MAX_FOTOS_IA = 10; // igual ao limite do servidor
 
 function telaNovo() {
   const r = rascunho;
@@ -523,7 +524,12 @@ function passoTratamento(alvo) {
 function passoLegenda(alvo) {
   const r = rascunho;
   alvo.innerHTML = `
-    ${estado.ia ? "" : '<p class="modo-demo bloco">Modo demonstração: as legendas vêm de modelos prontos. Com a IA ligada, elas são criadas a partir das suas fotos.</p>'}
+    ${estado.ia
+      ? `<div class="bloco">
+          <h2>A IA vai olhar ${r.fotos.length > 1 ? `estas ${Math.min(r.fotos.length, MAX_FOTOS_IA)} fotos` : "esta foto"}</h2>
+          <div class="miniaturas" id="fotosIA"></div>
+        </div>`
+      : '<p class="modo-demo bloco">Modo demonstração: as fotos ainda não são analisadas e as legendas vêm de modelos prontos. Para a legenda considerar o que aparece nas fotos, é preciso ligar a IA (chave <code>ANTHROPIC_API_KEY</code> no servidor).</p>'}
     <div class="bloco">
       <h2>Qual o objetivo deste post?</h2>
       <div class="chips" id="objetivos">
@@ -531,7 +537,7 @@ function passoLegenda(alvo) {
       </div>
     </div>
     <div class="bloco">
-      <label class="campo"><span>O que você quer dizer? Escreva do seu jeito, como mandaria numa mensagem.</span>
+      <label class="campo"><span>O que você quer dizer? Escreva do seu jeito, como mandaria numa mensagem.${estado.ia ? " Se preferir, deixe em branco: a IA escreve só a partir das fotos." : ""}</span>
         <textarea id="briefing" maxlength="2000" placeholder="Ex.: chegou o novo cardápio de verão, tem açaí na tigela e sucos naturais, quero chamar o pessoal pra vir no fim de semana">${esc(r.briefing)}</textarea></label>
       <button class="btn btn-laranja btn-largo" id="gerar">${ICONES.magica} ${r.resultado ? "Criar outras legendas" : "Criar legendas"}</button>
     </div>
@@ -551,6 +557,7 @@ function passoLegenda(alvo) {
     if (!res) { $("#resultado").innerHTML = ""; return; }
     $("#resultado").innerHTML = `
       <div class="bloco">
+        ${res.fotos_descricao ? `<p class="sugestao visto"><b>O que a IA viu nas fotos:</b> ${esc(res.fotos_descricao)}</p>` : ""}
         <h2>Escolha uma opção</h2>
         ${res.aviso ? `<p class="sugestao">${esc(res.aviso)}</p>` : ""}
         ${res.opcoes.map((o, i) => `
@@ -576,6 +583,16 @@ function passoLegenda(alvo) {
     });
   };
 
+  // Miniaturas das fotos que a IA vai considerar (já com o tratamento aplicado).
+  for (const f of r.fotos.slice(0, MAX_FOTOS_IA)) {
+    const box = document.createElement("div");
+    box.className = "mini";
+    const c = document.createElement("canvas");
+    desenhar(c, f.foto, f.ajustes, r.formato, {}, 0.12);
+    box.append(c);
+    $("#fotosIA")?.append(box);
+  }
+
   for (const b of $$("#objetivos .chip")) {
     b.addEventListener("click", () => {
       r.objetivo = r.objetivo === b.dataset.o ? "" : b.dataset.o;
@@ -590,7 +607,7 @@ function passoLegenda(alvo) {
     const fim = botaoCarregando(e.currentTarget, estado.ia ? "Olhando suas fotos e escrevendo..." : "Criando...");
     try {
       const imagens = estado.ia
-        ? r.fotos.slice(0, 4).map((f) => paraBase64Pequeno(f.foto, f.ajustes, r.formato, arteAtual()))
+        ? r.fotos.slice(0, MAX_FOTOS_IA).map((f) => paraBase64Pequeno(f.foto, f.ajustes, r.formato, arteAtual()))
         : [];
       r.resultado = await api("POST", "/api/legendas", { objetivo: r.objetivo, briefing: r.briefing, formato: r.formato, imagens });
       r.escolhida = 0;

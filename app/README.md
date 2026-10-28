@@ -12,7 +12,7 @@ Aplicativo web (abre no navegador do celular e pode ser instalado na tela inicia
 | Meu negócio | Nome, ramo, cidade, público, diferenciais, jeito de falar, @ do Instagram, WhatsApp, hashtags e cores da marca. |
 | 1. Fotos | Tira a foto pela câmera ou escolhe da galeria (até 10, vira carrossel). Formatos: Feed 4:5, Quadrado 1:1, Stories/Reels 9:16. |
 | 2. Tratamento | Melhoria automática de luz e cor, filtros, brilho, contraste, cor, temperatura, zoom e arrastar para enquadrar. Texto sobre a foto e etiqueta com o @ da marca, nas cores do negócio. Tudo feito no próprio celular. |
-| 3. Legenda | O empresário escolhe o objetivo e escreve do jeito dele o que quer dizer. A IA (Claude) olha as fotos e cria 3 opções de legenda, hashtags, sugestão de horário e uma dica. |
+| 3. Legenda | A IA (Claude) olha todas as fotos do post (até 10, já tratadas), diz o que viu nelas e cria 3 opções de legenda que citam detalhes das fotos, além de hashtags, sugestão de horário e uma dica. O empresário pode escrever do jeito dele o que quer dizer, ou deixar em branco para a IA partir só das fotos. No modo demonstração (sem chave), as fotos não são analisadas. |
 | 4. Agendar | Escolhe dia e hora, vê a prévia como no Instagram e salva como rascunho ou pronto. |
 | Postar | "Postar agora" copia a legenda e abre o compartilhamento do celular com as fotos. Depois, "Já publiquei" marca o post como publicado. |
 | Início | Próximos posts (com aviso de atrasado), publicados e resumo do mês. |

@@ -168,6 +168,8 @@ input[type=range] { width: 100%; accent-color: var(--verde); height: 32px; }
 .opcao-legenda[aria-pressed="true"] { border-color: var(--verde); }
 .opcao-legenda strong { display: block; font-size: 13px; color: var(--verde); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .05em; }
 .opcao-legenda p { white-space: pre-wrap; font-size: 15px; }
+.sugestao.visto { border-left-color: var(--verde); color: var(--texto); }
+.modo-demo code { font-size: 12px; }
 .sugestao { font-size: 14px; color: var(--texto-2); border-left: 3px solid var(--laranja); padding-left: 10px; margin: 8px 0; }
 .carregando { display: inline-block; width: 18px; height: 18px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: gira .7s linear infinite; }
 @keyframes gira { to { transform: rotate(360deg); } }

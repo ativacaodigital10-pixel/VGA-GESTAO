@@ -145,6 +145,10 @@ test("legendas usam o perfil do negócio e o pedido do empresário", async () =>
   const chamada = chamadasGerador.at(-1);
   assert.equal(chamada.negocio.nome, "Açaí do Caio");
   assert.deepEqual(chamada.imagens, ["abc="], "descarta imagem inválida");
+
+  const muitas = Array.from({ length: 12 }, () => "QUJD");
+  await c("POST", "/api/legendas", { imagens: muitas });
+  assert.equal(chamadasGerador.at(-1).imagens.length, 10, "repassa até 10 fotos para a IA");
 });
 
 test("site e app são servidos", async () => {

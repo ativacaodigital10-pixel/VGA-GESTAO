@@ -12,9 +12,15 @@ export const OBJETIVOS = {
   data: "Data comemorativa",
 };
 
+export const MAX_FOTOS_IA = 10;
+
 const ESQUEMA = {
   type: "object",
   properties: {
+    fotos_descricao: {
+      type: "string",
+      description: "Em 1 ou 2 frases, o que aparece nas fotos (produto, pessoas, ambiente, detalhes). Vazio se não houver fotos.",
+    },
     opcoes: {
       type: "array",
       description: "Exatamente 3 legendas com estilos diferentes.",
@@ -33,7 +39,7 @@ const ESQUEMA = {
     melhor_horario: { type: "string", description: "Sugestão de dia e horário para postar, com o motivo em poucas palavras" },
     dica: { type: "string", description: "Uma dica prática para este post render mais" },
   },
-  required: ["opcoes", "hashtags", "titulo_arte", "melhor_horario", "dica"],
+  required: ["fotos_descricao", "opcoes", "hashtags", "titulo_arte", "melhor_horario", "dica"],
   additionalProperties: false,
 };
 
@@ -45,7 +51,12 @@ Regras:
 - Parágrafos curtos, emojis com moderação (no máximo 3 por legenda).
 - Termine com uma chamada para ação clara (ex.: chamar no WhatsApp, visitar, comentar, salvar).
 - Nunca invente preços, datas, endereços ou promoções que o empresário não informou.
-- Se as fotos mostrarem algo, use o que aparece nelas para deixar a legenda concreta.
+- As fotos são a base do post. Antes de escrever, observe cada uma com atenção: o produto ou serviço, pessoas,
+  ambiente, cores, texturas, quantidades e qualquer texto visível (placas, embalagens, cardápio).
+- Cada legenda precisa citar pelo menos um detalhe concreto que aparece nas fotos, com palavras que o cliente usaria.
+- Se o texto do empresário e as fotos parecerem não combinar, priorize o que ele escreveu e use das fotos só o que for coerente.
+- Em carrossel (várias fotos), convide a pessoa a deslizar para ver as outras quando fizer sentido.
+- Nunca descreva o que não está visível nem adivinhe marcas, nomes ou preços pelas fotos.
 - Hashtags: misture locais (cidade/bairro), do segmento e da marca. Sem hashtags genéricas demais como #love.`;
 
 export function iaDisponivel() {
@@ -78,9 +89,11 @@ export async function gerarLegendas({ negocio, objetivo, briefing, formato, imag
   if (!iaDisponivel()) return { ...legendasModelo({ negocio, objetivo, briefing }), origem: "modelo" };
 
   const conteudo = [];
-  for (const img of (imagens || []).slice(0, 4)) {
+  const fotos = (imagens || []).slice(0, MAX_FOTOS_IA);
+  fotos.forEach((img, i) => {
+    if (fotos.length > 1) conteudo.push({ type: "text", text: `Foto ${i + 1} de ${fotos.length}:` });
     conteudo.push({ type: "image", source: { type: "base64", media_type: "image/jpeg", data: img } });
-  }
+  });
   conteudo.push({
     type: "text",
     text: `Dados do negócio:
@@ -88,10 +101,12 @@ ${descreverNegocio(negocio) || "(perfil ainda não preenchido)"}
 
 Objetivo do post: ${OBJETIVOS[objetivo] || objetivo || "não informado"}
 Formato: ${formato === "story" ? "Stories/Reels (9:16)" : "post no feed"}
+Fotos enviadas: ${fotos.length ? `${fotos.length}${fotos.length > 1 ? " (carrossel, na ordem acima)" : ""}` : "nenhuma"}
 O que o empresário quer comunicar, nas palavras dele:
 """${briefing || "(não escreveu nada; use as fotos)"}"""
 
-Crie 3 opções de legenda com estilos diferentes, as hashtags, um título curto para a arte, o melhor horário e uma dica.`,
+Descreva brevemente o que aparece nas fotos e crie 3 opções de legenda com estilos diferentes, baseadas nas fotos e no que o empresário quer dizer.
+Inclua também as hashtags, um título curto para a arte, o melhor horário e uma dica.`,
   });
 
   const resposta = await obterCliente().beta.messages.create({
@@ -121,6 +136,7 @@ function normalizar(d) {
     .filter(Boolean)
     .map((h) => (h.startsWith("#") ? h : `#${h}`));
   return {
+    fotos_descricao: String(d.fotos_descricao || ""),
     opcoes: (d.opcoes || []).slice(0, 3).map((o) => ({ estilo: String(o.estilo || ""), legenda: String(o.legenda || "") })),
     hashtags: semRepetir(hashtags).slice(0, 20),
     titulo_arte: String(d.titulo_arte || ""),
@@ -174,6 +190,7 @@ export function legendasModelo({ negocio, objetivo, briefing }) {
   const hashtags = semRepetir(tagsBase.filter((h) => h && h.length > 1).map((h) => (h.startsWith("#") ? h : `#${h}`)));
 
   return {
+    fotos_descricao: "",
     opcoes: [
       { estilo: "Direta", legenda: `${gancho}\n\n${corpo}\n\n${cta}` },
       { estilo: "Conversa", legenda: `Sabe aquele momento em que tudo dá certo? É isso que a gente quer pra você${local}.\n\n${corpo}\n\nMarca aqui quem precisa ver isso! 👇` },
