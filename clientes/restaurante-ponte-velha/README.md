@@ -1,11 +1,16 @@
 # Restaurante Ponte Velha
 
-Restaurante de barreado e gastronomia regional à beira do Rio Nhundiaquara, em Morretes–PR.
+Tradicional culinária paranaense e barreado artesanal desde 1991, ao pé da velha ponte, às margens do Rio Nhundiaquara, em Morretes–PR. "Viva esta experiência."
 
-- **Perfis:** Instagram @ (a confirmar)
+- **Site:** restaurantepontevelha.com.br
+- **Perfis:** Instagram @restaurantepontevelha · Facebook /morretespontevelha
+- **Reservas:** WhatsApp https://wa.me/message/CKYVC57KRIQFI1 · (41) 3462-1674 · reservaspontevelha@gmail.com
+- **Endereço:** R. Alm. Frederico de Oliveira, 13, Morretes–PR
 - **Pasta no Drive:** (link a criar: `Ponte Velha/2026-11/`)
 - **Responsável na agência:** (preencher)
 - **Pacote contratado:** a confirmar. O plano de novembro usa **12 posts no feed (6 Reels, 4 carrosséis, 2 fotos) + stories**.
+
+> ⚠️ O site do cliente tem textos de spam inseridos (provável invasão). Ver [pendencias.md](pendencias.md).
 
 ## Arquivos de novembro/2026
 | Etapa | Arquivo |
