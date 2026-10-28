@@ -11,7 +11,7 @@
 | Posts publicados | | | |
 
 ## Top 3 conteúdos
-1. ____ (por quê funcionou)
+1. ____ (por que funcionou)
 2. ____
 3. ____
 
