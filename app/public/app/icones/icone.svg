@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#0a0a0a"/>
+  <text x="240" y="318" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="168" fill="#f2f2f2" letter-spacing="-6">VGA</text>
+  <circle cx="440" cy="304" r="20" fill="#39ff14"/>
+  <rect x="96" y="352" width="120" height="14" rx="7" fill="#ff7a1a"/>
+</svg>
