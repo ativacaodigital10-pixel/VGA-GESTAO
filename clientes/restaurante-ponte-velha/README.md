@@ -16,3 +16,5 @@ Restaurante de barreado e gastronomia regional à beira do Rio Nhundiaquara, em 
 | Roteiros dos Reels | [02-planejamento/2026-11-roteiros-reels.md](02-planejamento/2026-11-roteiros-reels.md) |
 | Lista de captação | [03-captacao/2026-11-checklist-captacao.md](03-captacao/2026-11-checklist-captacao.md) |
 | Pendências com o cliente | [pendencias.md](pendencias.md) |
+| Mensagens de WhatsApp | [mensagens-whatsapp.md](mensagens-whatsapp.md) |
+| Controle de aprovação | [05-aprovacao/2026-11-controle-aprovacao.csv](05-aprovacao/2026-11-controle-aprovacao.csv) |
