@@ -73,6 +73,12 @@ export function criarApp({ pastaDados = path.join(aqui, "data"), gerador = gerar
   const limiteLegendas = criarLimitador({ maximo: 40, janelaMs: 60 * 60e3 });
   const json = express.json({ limit: "100kb" });
 
+  // Usado pela hospedagem para saber se o app está no ar.
+  app.get("/api/saude", (req, res) => {
+    db.prepare("SELECT 1").get();
+    res.json({ ok: true });
+  });
+
   // ---------- Contas ----------
   app.post("/api/cadastro", json, (req, res) => {
     const nome = texto(req.body?.nome, 120);
@@ -286,11 +292,30 @@ export function criarApp({ pastaDados = path.join(aqui, "data"), gerador = gerar
   return { app, db };
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+// No Windows a letra do disco pode vir em maiúscula ou minúscula; compara sem diferenciar.
+function mesmoArquivo(a, b) {
+  const norm = (x) => (process.platform === "win32" ? path.resolve(x).toLowerCase() : path.resolve(x));
+  return norm(a) === norm(b);
+}
+
+if (process.argv[1] && mesmoArquivo(process.argv[1], fileURLToPath(import.meta.url))) {
   const porta = Number(process.env.PORT) || 3000;
-  const { app } = criarApp({ pastaDados: process.env.PASTA_DADOS || path.join(aqui, "data") });
-  app.listen(porta, () => {
+  // Caminho relativo em PASTA_DADOS conta a partir da pasta app/.
+  const pastaDados = path.resolve(aqui, process.env.PASTA_DADOS || "data");
+  const { app, db } = criarApp({ pastaDados });
+  const servidor = app.listen(porta, () => {
     console.log(`VGA rodando em http://localhost:${porta}  (app em /app)`);
+    console.log(`Dados em ${pastaDados}`);
     if (!iaDisponivel()) console.log("Sem ANTHROPIC_API_KEY: legendas em modo demonstração (modelos prontos).");
   });
+  // A hospedagem manda SIGTERM ao reiniciar: fecha o banco com calma para não perder dados.
+  const encerrar = () => {
+    servidor.close(() => {
+      db.close();
+      process.exit(0);
+    });
+    setTimeout(() => process.exit(0), 8000).unref();
+  };
+  process.on("SIGTERM", encerrar);
+  process.on("SIGINT", encerrar);
 }
