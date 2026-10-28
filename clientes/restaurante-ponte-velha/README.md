@@ -18,3 +18,5 @@ Restaurante de barreado e gastronomia regional à beira do Rio Nhundiaquara, em 
 | Pendências com o cliente | [pendencias.md](pendencias.md) |
 | Mensagens de WhatsApp | [mensagens-whatsapp.md](mensagens-whatsapp.md) |
 | Controle de aprovação | [05-aprovacao/2026-11-controle-aprovacao.csv](05-aprovacao/2026-11-controle-aprovacao.csv) |
+| Legendas e hashtags finais | [06-postagem/2026-11-legendas-hashtags.md](06-postagem/2026-11-legendas-hashtags.md) |
+| Relatório de novembro (modelo) | [07-analise/2026-11-relatorio.md](07-analise/2026-11-relatorio.md) |

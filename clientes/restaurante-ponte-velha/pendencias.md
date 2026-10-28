@@ -14,3 +14,19 @@ Confirmar antes de postar:
 - [ ] Alguma ação especial para o feriadão de 20/11?
 - [ ] Quem aprova os posts e o prazo de aprovação
 - [ ] Data da sessão de captação
+
+## Conferir no site oficial (restaurantepontevelha.com.br)
+O site ainda não foi lido: o acesso estava bloqueado na sessão em que estas legendas foram feitas. Quando for lido, revisar todos os arquivos de novembro com:
+- [ ] História da casa
+- [ ] Cardápio com os nomes reais dos pratos (post 11 e legendas)
+- [ ] Diferenciais e tom de voz usados no site
+- [ ] Endereço, horários, telefone/WhatsApp e @ do Instagram
+- [ ] Logo, cores e fontes
+- [ ] Hashtag própria da marca (as legendas usam #pontevelha)
+
+Dados encontrados em fonte de terceiros (perfil do Sebrae PR, "Melhores do Turismo"), **não usados nos posts até confirmar**:
+- Fundado em 1991, às margens do Rio Nhundiaquara
+- Endereço: R. Alm. Frederico de Oliveira, 13, Morretes–PR
+- Telefone: (41) 3462-1674
+- Selos de qualidade Sebrae em 2017, 2019 e 2024
+- Instagram: @restaurantepontevelha
