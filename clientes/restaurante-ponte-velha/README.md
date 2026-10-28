@@ -1,11 +1,16 @@
 # Restaurante Ponte Velha
 
-Restaurante de barreado e gastronomia regional à beira do Rio Nhundiaquara, em Morretes–PR.
+Tradicional culinária paranaense e barreado artesanal desde 1991, ao pé da velha ponte, às margens do Rio Nhundiaquara, em Morretes–PR. "Viva esta experiência."
 
-- **Perfis:** Instagram @ (a confirmar)
+- **Site:** restaurantepontevelha.com.br
+- **Perfis:** Instagram @restaurantepontevelha · Facebook /morretespontevelha
+- **Reservas:** WhatsApp https://wa.me/message/CKYVC57KRIQFI1 · (41) 3462-1674 · reservaspontevelha@gmail.com
+- **Endereço:** R. Alm. Frederico de Oliveira, 13, Morretes–PR
 - **Pasta no Drive:** (link a criar: `Ponte Velha/2026-11/`)
 - **Responsável na agência:** (preencher)
 - **Pacote contratado:** a confirmar. O plano de novembro usa **12 posts no feed (6 Reels, 4 carrosséis, 2 fotos) + stories**.
+
+> ⚠️ O site do cliente tem textos de spam inseridos (provável invasão). Ver [pendencias.md](pendencias.md).
 
 ## Arquivos de novembro/2026
 | Etapa | Arquivo |
@@ -18,3 +23,5 @@ Restaurante de barreado e gastronomia regional à beira do Rio Nhundiaquara, em 
 | Pendências com o cliente | [pendencias.md](pendencias.md) |
 | Mensagens de WhatsApp | [mensagens-whatsapp.md](mensagens-whatsapp.md) |
 | Controle de aprovação | [05-aprovacao/2026-11-controle-aprovacao.csv](05-aprovacao/2026-11-controle-aprovacao.csv) |
+| Legendas e hashtags finais | [06-postagem/2026-11-legendas-hashtags.md](06-postagem/2026-11-legendas-hashtags.md) |
+| Relatório de novembro (modelo) | [07-analise/2026-11-relatorio.md](07-analise/2026-11-relatorio.md) |
