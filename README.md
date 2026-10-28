@@ -1,5 +1,7 @@
 # VGA Gestão: Redes Sociais
 
+> **Novo:** o [VGA App](app/README.md) deixa o próprio empresário montar e organizar as redes pelo celular: fotos, tratamento, arte, legenda com IA e agenda de postagens.
+
 Central de gestão das redes sociais dos clientes, da **fotografia e vídeo** até a **postagem e análise**.
 
 ## Fluxo de trabalho (7 etapas)
@@ -24,6 +26,8 @@ Central de gestão das redes sociais dos clientes, da **fotografia e vídeo** at
 ## Estrutura
 
 ```
+site/        → página de vendas da VGA
+app/         → aplicativo para o empresário (ver app/README.md)
 processos/   → passo a passo de cada etapa
 modelos/     → arquivos prontos para copiar e preencher
 clientes/    → uma pasta por cliente, com as 7 etapas

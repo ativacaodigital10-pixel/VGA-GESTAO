@@ -1,0 +1,20 @@
+# Configuração do Render (Blueprint). Veja app/README.md → "Publicar com HTTPS".
+services:
+  - type: web
+    name: vga-app
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    # O disco que guarda contas, posts e fotos só existe a partir do plano Starter.
+    # Para só testar de graça, troque para "free" e apague o bloco "disk"
+    # (aí os dados somem quando o serviço reinicia ou "dorme").
+    plan: starter
+    healthCheckPath: /api/saude
+    envVars:
+      - key: PASTA_DADOS
+        value: /data
+      - key: ANTHROPIC_API_KEY
+        sync: false
+    disk:
+      name: dados
+      mountPath: /data
+      sizeGB: 1

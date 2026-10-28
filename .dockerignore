@@ -1,0 +1,7 @@
+.git
+**/node_modules
+app/data
+app/.env
+clientes
+modelos
+processos
